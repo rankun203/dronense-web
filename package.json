@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/geojson": "^7946.0.7",
+    "@types/lodash": "^4.14.136",
     "deck.gl": "^7.1.7",
     "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.14",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-map-gl": "^5.0.3",

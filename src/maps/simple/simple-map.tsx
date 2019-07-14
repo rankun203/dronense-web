@@ -3,10 +3,10 @@ import ReactMapGL from 'react-map-gl';
 import DeckGL from '@deck.gl/react';
 import { LineLayer } from '@deck.gl/layers';
 
-import { CONFIG } from './config';
+import { CONFIG } from '../../config';
 // import { useInterval } from './use-interval';
 
-export interface IFFMapProps {
+export interface ISimpleMapProps {
   container: React.MutableRefObject<null>;
 }
 
@@ -15,7 +15,7 @@ export interface IFFMapProps {
 //   return <circle cx={28.5295028} cy={101.2251941} r={6} fill="blue" />;
 // }
 
-export const FFMap: React.FC<IFFMapProps> = props => {
+export const SimpleMap = (props: ISimpleMapProps) => {
   const {
     container: { current: parent }
   } = props;
