@@ -11,7 +11,7 @@ export interface IPersonProperties {
   featureType: 'Civilian' | 'CrewMember';
   name: string;
   crew?: ICrew;
-  healthStatus: 'Healthy' | 'Dead';
+  healthStatus: 'Healthy' | 'Dead' | 'Unknown';
   /** moving speed, 5.0(m/s) */
   movingSpeed: number;
   /** moving direction, 50.5(°) */

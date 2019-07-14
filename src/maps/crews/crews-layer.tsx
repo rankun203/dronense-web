@@ -14,7 +14,12 @@ export const CrewsLayer: React.FC<ICrewsLayerProps> = props => {
   return (
     <>
       {crewsData.map(person => {
-        const coordinates = _get(person, ['geometry', 'coordinates'], []);
+        const { geometry, properties } = person;
+        const coordinates = _get(geometry, 'coordinates', []);
+        const movingDirection = _get(properties, 'movingDirection', 0);
+        const movingSpeed = _get(properties, 'movingSpeed', 0);
+        const healthStatus = _get(properties, 'healthStatus', 'Unknown');
+        // TODO: Use direction, speed
         return (
           <PinMarker
             lat={coordinates[1]}
