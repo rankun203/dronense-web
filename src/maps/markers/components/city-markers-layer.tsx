@@ -1,5 +1,4 @@
 import React from 'react';
-import { Marker } from 'react-map-gl';
 import { Feature, Point } from 'geojson';
 import _get from 'lodash/get';
 import { TCityMarkerProperties } from '../../models/i-city-marker-properties';

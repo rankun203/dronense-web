@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import MapGL, { Marker, Popup } from 'react-map-gl';
+import _get from 'lodash/get';
+import MapGL from 'react-map-gl';
 
 import { CONFIG } from '../../config';
 import { CityMarkersLayer } from './components/city-markers-layer';
@@ -16,12 +17,10 @@ export interface ISimpleMapProps {
 }
 
 export const SimpleMarkers: React.FC<ISimpleMapProps> = props => {
-  const {
-    container: { current: parent }
-  } = props;
+  const { container } = props;
 
-  const width = (parent && (parent as any).offsetWidth) || 400;
-  const height = (parent && (parent as any).offsetHeight) || 400;
+  const width = _get(container, 'current.offsetWidth', 400);
+  const height = _get(container, 'current.offsetHeight', 400);
 
   const [state, updateState] = useState({
     viewport: DEFAULT_VIEW_PORT

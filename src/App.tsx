@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import './App.css';
-import { SimpleMap, SimpleMarkers } from './maps';
+import {
+  // SimpleMap,
+  SimpleMarkers
+} from './maps';
 
 const Container = styled.div`
   height: 100vh;

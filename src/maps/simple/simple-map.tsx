@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
+import _get from 'lodash/get';
 import ReactMapGL from 'react-map-gl';
-import DeckGL from '@deck.gl/react';
-import { LineLayer } from '@deck.gl/layers';
 
 import { CONFIG } from '../../config';
-// import { useInterval } from './use-interval';
 
 export interface ISimpleMapProps {
-  container: React.MutableRefObject<null>;
+  container: React.MutableRefObject<HTMLDivElement>;
 }
 
-// function redraw() {
-//   // const [cx, cy] = project([-122, 37]);
-//   return <circle cx={28.5295028} cy={101.2251941} r={6} fill="blue" />;
-// }
-
 export const SimpleMap = (props: ISimpleMapProps) => {
-  const {
-    container: { current: parent }
-  } = props;
+  const { container } = props;
 
-  const width = (parent && (parent as any).offsetWidth) || 400;
-  const height = (parent && (parent as any).offsetHeight) || 400;
+  const width = _get(container, 'current.offsetWidth', 400);
+  const height = _get(container, 'current.offsetHeight', 400);
 
   const [state, updateState] = useState({
     viewport: {
@@ -31,32 +22,7 @@ export const SimpleMap = (props: ISimpleMapProps) => {
     }
   });
 
-  // useInterval(() => {
-  //   const currentZoom = state.viewport.zoom;
-  //   const targetZoom = currentZoom <= 3 ? 3 : currentZoom - 1;
-  //   updateState({
-  //     ...state,
-  //     viewport: { ...state.viewport, zoom: targetZoom }
-  //   });
-  //   console.log(`targetZoom(${Date.now()})`, targetZoom);
-  // }, 3000);
-
-  // Data to be used by the LineLayer
-  const data = [
-    {
-      sourcePosition: [-122.41669, 37.7853],
-      targetPosition: [-122.41669, 37.781]
-    }
-  ];
-  const layers = [new LineLayer({ id: 'line-layer', data })];
   return (
-    // <DeckGL
-    //   viewState={state.viewport}
-    //   width={width}
-    //   height={height}
-    //   layers={layers}
-    //   controller={true}
-    // >
     <ReactMapGL
       {...state.viewport}
       width={width}
@@ -64,6 +30,5 @@ export const SimpleMap = (props: ISimpleMapProps) => {
       mapboxApiAccessToken={CONFIG.API_KEY}
       onViewportChange={viewport => updateState({ viewport } as any)}
     />
-    // </DeckGL>
   );
 };
