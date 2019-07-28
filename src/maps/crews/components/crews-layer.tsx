@@ -1,22 +1,25 @@
 import React from 'react';
 import _get from 'lodash/get';
 import { Feature, Point } from 'geojson';
-import { Popup } from 'react-map-gl';
 import { IPersonProperties } from '../interfaces/i-crew-member';
 import { PinMarker } from '../../markers/components/pin-marker';
 import { PersonPin, IPersonDataTag } from '../../components/person-pin';
 import { IDataTags } from '../../components/interfaces/i-data-tags';
-import { PersonPopup } from '../../components/person-popup';
+import { PersonPopup, TPopupData } from '../../components/person-popup';
+import { CPopup } from '../../components/popup';
+// import { useOnOutsideClick } from '../../components/hooks/use-outer-click-notifier';
 
 export interface ICrewsLayerProps {
   crewsData: Array<Feature<Point, IPersonProperties>>;
 }
 
-type TPopupData = Feature<Point, IPersonProperties>;
-
 export const CrewsLayer: React.FC<ICrewsLayerProps> = props => {
   const { crewsData } = props;
   const [popupData, updatePopupData] = React.useState<TPopupData | null>(null);
+  // const popupRef = React.useRef(null);
+
+  // const { innerBorderRef } = useOnOutsideClick(() => updatePopupData(null));
+
   return (
     <>
       {crewsData.map(person => {
@@ -55,21 +58,17 @@ export const CrewsLayer: React.FC<ICrewsLayerProps> = props => {
         );
       })}
       {popupData && (
-        <Popup
+        <CPopup
           tipSize={5}
           anchor="top"
           longitude={popupData.geometry.coordinates[0]}
           latitude={popupData.geometry.coordinates[1]}
-          closeOnClick={false}
           onClose={() => updatePopupData(null)}
+          closeOnClick={true}
+          // ref={innerBorderRef as any}
         >
-          <PersonPopup
-            data={{
-              title: 'Title',
-              desc: 'Desc...'
-            }}
-          />
-        </Popup>
+          <PersonPopup data={popupData} />
+        </CPopup>
       )}
     </>
   );

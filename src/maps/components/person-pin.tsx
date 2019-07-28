@@ -21,10 +21,11 @@ export interface IPersonDataTag extends IDataTag {
 export interface IPersonPinProps {
   /** Default: {} */
   dataTags?: IDataTags<IPersonDataTag>;
+  [key: string]: any;
 }
 
 export const PersonPin: React.FC<IPinProps & IPersonPinProps> = props => {
-  const { size = 24, dataTags = {}, onClick } = props;
+  const { size = 24, dataTags = {}, onClick, ...restProps } = props;
   const movingDirection = _get(dataTags, 'movingDirection.value', 0);
 
   return (
@@ -33,10 +34,11 @@ export const PersonPin: React.FC<IPinProps & IPersonPinProps> = props => {
       viewBox="0 0 24 24"
       style={{
         ...pinStyle,
-        transform: `translate(${-size /
-          2}px,${-size / 2}px) rotate(${movingDirection}deg)`
+        transform: `translate(${-size / 2}px,${-size /
+          2}px) rotate(${movingDirection}deg)`
       }}
       onClick={onClick}
+      {...restProps}
     >
       <path d={ICON} />
     </svg>
