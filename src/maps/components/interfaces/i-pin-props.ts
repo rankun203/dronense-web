@@ -1,4 +1,4 @@
 export interface IPinProps {
-  size: number;
+  size?: number;
   onClick?: () => void;
 }
