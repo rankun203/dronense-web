@@ -8,7 +8,7 @@ Create a .env file by running this command:
 # Duplicate a .env file from template
 cp .env.example .env
 
-# Edit .env file
+# Edit .env file, fill in your Mapbox API Key
 vi .env
 ```
 
