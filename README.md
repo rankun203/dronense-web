@@ -1,5 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Preparation
+
+Create a .env file by running this command:
+
+```bash
+# Duplicate a .env file from template
+cp .env.example .env
+
+# Edit .env file
+vi .env
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
